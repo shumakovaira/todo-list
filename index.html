@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do list</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <div id="app">
+        <div class="wrapper">
+            <div class="add-el">
+                <div class="header">
+                    <img src="./img/evaluation.png" height="40px" alt="todo" id="logo"> 
+                    <h1 :class="{ 
+                        red: selectedItems.length < list.length,
+                        yellow: selectedItems.length >= list.length / 2 && list.length !=0,
+                        green: selectedItems.length == list.length && list.length !== 0
+                        }"> TODO List </h1> 
+                </div>
+                <input type="text" id="current-value" v-model="inputValue" @keyup.enter="add" placeholder="type your plans here">
+                <button @click="add" class="addButton">Add</button>
+            </div>
+            <div class="planning-list">
+                <ul>
+                    <li v-for="(item, index) in list">
+                        <input type="checkbox" v-model="item.selected" :id="item.value" :value="item.value"> 
+                        <label :for="item">{{item.value}}</label>
+                        <a href="#" @click="deleteItem (index)"><img src="./img/delete.png"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
