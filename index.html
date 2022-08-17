@@ -28,7 +28,7 @@
                 <ul>
                     <li v-for="(item, index) in list">
                         <input type="checkbox" v-model="item.selected" :id="item.value" :value="item.value"> 
-                        <label :for="item">{{item.value}}</label>
+                        <label :for="item" @click="deleteItem (index)">{{item.value}}</label>
                         <a href="#" @click="deleteItem (index)"><img src="./img/delete.png"></a>
                     </li>
                 </ul>
